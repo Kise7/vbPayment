@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Database1" Class="Database1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True" SettingsObjectName="Testing.My.MySettings" SettingsPropertyName="Database1ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Customer" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="custID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fullName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="phoneNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="address" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Customer_Cart" Member="Carts" ThisKey="custID" OtherKey="custID" Type="Cart" Cardinality="One" />
+      <Association Name="Customer_Order1" Member="Orders" ThisKey="custID" OtherKey="custID" Type="Order" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Payment" Member="Payments">
+    <Type Name="Payment">
+      <Column Name="paymentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="amount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="orderID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Order1_Payment" Member="Order" ThisKey="orderID" OtherKey="orderID" Type="Order" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cart" Member="Carts">
+    <Type Name="Cart">
+      <Column Name="cartID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="custID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Cart_FoodCart" Member="FoodCarts" ThisKey="cartID" OtherKey="cartID" Type="FoodCart" />
+      <Association Name="Customer_Cart" Member="Customer" ThisKey="custID" OtherKey="custID" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FoodCart" Member="FoodCarts">
+    <Type Name="FoodCart">
+      <Column Name="cartID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="foodID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="qtyAdded" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Cart_FoodCart" Member="Cart" ThisKey="cartID" OtherKey="cartID" Type="Cart" IsForeignKey="true" />
+      <Association Name="Food_FoodCart" Member="Food" ThisKey="foodID" OtherKey="foodID" Type="Food" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderDetail" Member="OrderDetails">
+    <Type Name="OrderDetail">
+      <Column Name="orderID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="foodID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="qtyOrdered" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Food_OrderDetail" Member="Food" ThisKey="foodID" OtherKey="foodID" Type="Food" IsForeignKey="true" />
+      <Association Name="Order1_OrderDetail" Member="Order" ThisKey="orderID" OtherKey="orderID" Type="Order" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Food" Member="Foods">
+    <Type Name="Food">
+      <Column Name="foodID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="image" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="price" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Food_FoodCart" Member="FoodCarts" ThisKey="foodID" OtherKey="foodID" Type="FoodCart" />
+      <Association Name="Food_OrderDetail" Member="OrderDetails" ThisKey="foodID" OtherKey="foodID" Type="OrderDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Staff" Member="Staffs">
+    <Type Name="Staff">
+      <Column Name="staffID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Delivery" Member="Deliveries">
+    <Type Name="Delivery">
+      <Column Name="deliveryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="time" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="custName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="custAddress" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="custPhoneNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="orderID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Order1_Delivery1" Member="Order" ThisKey="orderID" OtherKey="orderID" Type="Order" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Order]" Member="Orders">
+    <Type Name="Order">
+      <Column Name="orderID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="orderDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="orderTime" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="custID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Order1_Payment" Member="Payments" ThisKey="orderID" OtherKey="orderID" Type="Payment" />
+      <Association Name="Order1_OrderDetail" Member="OrderDetails" ThisKey="orderID" OtherKey="orderID" Type="OrderDetail" />
+      <Association Name="Order1_Delivery1" Member="Deliveries" ThisKey="orderID" OtherKey="orderID" Type="Delivery" />
+      <Association Name="Customer_Order1" Member="Customer" ThisKey="custID" OtherKey="custID" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

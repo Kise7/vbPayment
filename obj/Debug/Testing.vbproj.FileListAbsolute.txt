@@ -1,0 +1,15 @@
+C:\Users\Tan Yi Ching\source\repos\Testing\Testing\bin\Debug\Testing.exe.config
+C:\Users\Tan Yi Ching\source\repos\Testing\Testing\bin\Debug\Testing.exe
+C:\Users\Tan Yi Ching\source\repos\Testing\Testing\bin\Debug\Testing.pdb
+C:\Users\Tan Yi Ching\source\repos\Testing\Testing\bin\Debug\Testing.xml
+C:\Users\Tan Yi Ching\source\repos\Testing\Testing\obj\Debug\Testing.Resources.resources
+C:\Users\Tan Yi Ching\source\repos\Testing\Testing\obj\Debug\Testing.vbproj.GenerateResource.cache
+C:\Users\Tan Yi Ching\source\repos\Testing\Testing\obj\Debug\Testing.exe
+C:\Users\Tan Yi Ching\source\repos\Testing\Testing\obj\Debug\Testing.xml
+C:\Users\Tan Yi Ching\source\repos\Testing\Testing\obj\Debug\Testing.pdb
+C:\Users\Tan Yi Ching\source\repos\Testing\Testing\bin\Debug\Images\VB1.jpg
+C:\Users\Tan Yi Ching\source\repos\Testing\Testing\obj\Debug\Testing.vbprojAssemblyReference.cache
+C:\Users\Tan Yi Ching\source\repos\Testing\Testing\obj\Debug\Testing.Payment.resources
+C:\Users\Tan Yi Ching\source\repos\Testing\Testing\obj\Debug\Testing.PaymentReport.resources
+C:\Users\Tan Yi Ching\source\repos\Testing\Testing\obj\Debug\Testing.GenerateReceipt.resources
+C:\Users\Tan Yi Ching\source\repos\Testing\Testing\obj\Debug\Testing.PaymentHistory.resources
